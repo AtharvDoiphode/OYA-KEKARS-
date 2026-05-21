@@ -18,7 +18,7 @@ export const metadata = {
   description: "Delicious local cakes from Oya Kekars.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${outfit.variable} ${jakarta.variable}`}>
       <body className="antialiased min-h-full flex flex-col font-sans selection:bg-brand selection:text-white relative">

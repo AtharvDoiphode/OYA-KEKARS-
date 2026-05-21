@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CakeDetailsPage({ params }) {
+export default function CakeDetailsPage({ params }: { params: { id: string } }) {
   const cake = CAKE_CATALOG.find((c) => c.id.toString() === params.id);
 
   if (!cake) {
@@ -37,7 +37,7 @@ export default function CakeDetailsPage({ params }) {
             <ChevronLeft size={20} /> Back to Catalog
           </Link>
 
-          <div className="flex flex-col lg:flex-row gap-16">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
             
             {/* Left: Images */}
             <div className="lg:w-1/2 flex flex-col gap-4">

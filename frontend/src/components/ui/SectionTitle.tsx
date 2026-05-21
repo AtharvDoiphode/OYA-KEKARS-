@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export function SectionTitle({ children, className = "" }) {
+export function SectionTitle({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`relative inline-block ${className}`}>
       <motion.div 

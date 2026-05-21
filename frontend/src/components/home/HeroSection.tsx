@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { WHATSAPP_NUMBER } from "../../lib/constants";
 
 const HERO_IMAGES = [
@@ -20,7 +20,7 @@ export function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -28,13 +28,20 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20 flex flex-col lg:flex-row gap-12 items-center min-h-[85vh]">
+    <section className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20 flex flex-col lg:flex-row gap-12 items-center min-h-[85vh] overflow-hidden">
+      
+      {/* Subtle Dark Red Ambient Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#7f1d1d]/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-[#450a0a]/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[40%] left-[30%] w-[30%] h-[30%] bg-[#991b1b]/5 rounded-full blur-[100px]"></div>
+      </div>
       
       {/* Left Content */}
       <motion.div 
@@ -51,7 +58,7 @@ export function HeroSection() {
 
         <motion.h2 
           variants={itemVariants}
-          className="text-5xl md:text-6xl lg:text-8xl font-serif font-medium leading-[1.1] text-foreground"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif font-medium leading-[1.1] text-foreground"
         >
           Delicious <br className="hidden md:block"/> 
           <span className="text-brand italic">Moments,</span> <br className="hidden md:block"/> 
@@ -103,7 +110,7 @@ export function HeroSection() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-        className="flex-1 w-full lg:h-[700px] h-[500px] relative"
+        className="flex-1 w-full h-[400px] sm:h-[500px] lg:h-[700px] relative"
       >
         <div className="absolute inset-0 rounded-[40px] overflow-hidden bg-brand/5 p-4">
           <div className="relative w-full h-full rounded-[30px] overflow-hidden shadow-2xl bg-brand/5">

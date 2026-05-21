@@ -1,6 +1,10 @@
 import React from 'react';
 
-export function Button({ children, variant = 'primary', className = '', ...props }) {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'outline';
+}
+
+export function Button({ children, variant = 'primary', className = '', ...props }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all hover:scale-105 active:scale-95";
   
   const variants = {
