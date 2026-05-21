@@ -1,6 +1,19 @@
 export const WHATSAPP_NUMBER = "919876543210";
 
-export const CAKE_CATALOG = [
+export interface Cake {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+  category: string;
+  description: string;
+  ingredients: string[];
+  sizes: string[];
+  deliveryTime: string;
+  gallery: string[];
+}
+
+export const CAKE_CATALOG: Cake[] = [
   {
     id: 1,
     name: "Red Velvet Signature",
@@ -88,7 +101,15 @@ export const CAKE_CATALOG = [
   }
 ];
 
-export const GOOGLE_REVIEWS = [
+export interface Review {
+  id: number;
+  name: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
+export const GOOGLE_REVIEWS: Review[] = [
   {
     id: 1,
     name: "Anjali Sharma",
@@ -119,7 +140,7 @@ export const GOOGLE_REVIEWS = [
   }
 ];
 
-export const INSTAGRAM_REELS = [
+export const INSTAGRAM_REELS: string[] = [
   "https://images.unsplash.com/photo-1557308536-ee471ef2c390?q=80&w=400&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=400&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=400&auto=format&fit=crop",

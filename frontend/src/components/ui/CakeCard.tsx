@@ -6,7 +6,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { WHATSAPP_NUMBER } from '../../lib/constants';
 
-export function CakeCard({ cake }) {
+import { Cake } from '../../lib/constants';
+
+export function CakeCard({ cake }: { cake: Cake }) {
   return (
     <motion.div 
       whileHover={{ y: -5 }}

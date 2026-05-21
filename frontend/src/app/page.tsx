@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans overflow-x-hidden">
       <Navbar />
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full pt-[76px]">
         <HeroSection />
         <CatalogPreview />
         <FreshDaily />
