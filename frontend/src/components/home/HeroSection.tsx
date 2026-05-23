@@ -53,35 +53,33 @@ export function HeroSection() {
       >
         <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
           <div className="h-[1px] w-12 bg-brand"></div>
-          <span className="text-brand font-medium tracking-widest text-sm uppercase">Premium European Style</span>
+          <span className="text-brand font-medium tracking-widest text-sm uppercase">Premium European Style Cakes</span>
         </motion.div>
 
         <motion.h2 
           variants={itemVariants}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif font-medium leading-[1.1] text-foreground"
         >
-          Delicious <br className="hidden md:block"/> 
-          <span className="text-brand italic">Moments,</span> <br className="hidden md:block"/> 
-          Crafted Beautifully
+          Baking Pure <br className="hidden md:block"/> 
+          <span className="text-brand italic">Elegance,</span> <br className="hidden md:block"/> 
+          Just for You
         </motion.h2>
 
         <motion.p 
           variants={itemVariants}
-          className="mt-6 text-foreground/70 max-w-md text-lg leading-relaxed"
+          className="mt-8 text-foreground/70 max-w-lg text-lg leading-loose"
         >
-          Handcrafted with love and the finest ingredients. 100% vegetarian cakes bringing a taste of elegance to every celebration in Pune.
+          Elevate your celebrations with Pune's premier 100% vegetarian cakes. Every creation is passionately handcrafted with premium ingredients to ensure an unforgettable, luxurious taste in every single bite.
         </motion.p>
 
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row items-center gap-4 pt-4"
+            className="flex flex-col sm:flex-row items-center gap-4 pt-10"
           >
             <a 
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I'm interested in ordering a cake.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#catalog"
               className="w-full sm:w-auto px-8 py-4 bg-[#1a1a24] text-white rounded-full font-medium text-lg hover:bg-brand transition-colors text-center"
             >
               Order on WhatsApp

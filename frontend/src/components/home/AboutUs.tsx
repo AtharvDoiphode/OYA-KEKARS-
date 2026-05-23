@@ -1,7 +1,23 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import Image from "next/image";
 import { SectionTitle } from "../ui/SectionTitle";
+
+function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const motionValue = useMotionValue(0);
+  const rounded = useTransform(motionValue, (latest) => Math.round(latest) + suffix);
+
+  useEffect(() => {
+    if (isInView) {
+      animate(motionValue, value, { duration: 1, ease: "easeOut" });
+    }
+  }, [isInView, value, motionValue]);
+
+  return <motion.span ref={ref}>{rounded}</motion.span>;
+}
 
 export function AboutUs() {
   return (
@@ -16,7 +32,7 @@ export function AboutUs() {
             viewport={{ once: true }}
             className="lg:w-1/2 flex flex-col items-start"
           >
-            <SectionTitle className="mb-8">OUR STORY</SectionTitle>
+            <SectionTitle className="mb-8">ABOUT US</SectionTitle>
             <h3 className="text-2xl font-serif font-bold text-foreground mb-6">
               Baking memories in Pune since 2018.
             </h3>
@@ -29,11 +45,11 @@ export function AboutUs() {
             
             <div className="flex gap-12 border-t border-gray-200 pt-8 w-full">
               <div>
-                <p className="text-4xl font-bold text-brand mb-1">6+</p>
+                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={6} suffix="+" /></p>
                 <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wider">Years Experience</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-brand mb-1">15k+</p>
+                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={15} suffix="k+" /></p>
                 <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wider">Happy Customers</p>
               </div>
             </div>

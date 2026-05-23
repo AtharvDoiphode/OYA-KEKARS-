@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { GOOGLE_REVIEWS } from "../../lib/constants";
 import { SectionTitle } from "../ui/SectionTitle";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function GoogleReviews() {
   return (
@@ -65,17 +64,6 @@ export function GoogleReviews() {
           {/* Gradients to fade edges */}
           <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none"></div>
-        </div>
-
-        {/* Pagination controls */}
-        <div className="flex items-center gap-4 mt-12 text-sm font-semibold text-foreground/50">
-          <button className="w-8 h-8 rounded-full bg-[#52637a] flex items-center justify-center text-white hover:bg-brand transition-colors">
-            <ChevronLeft size={16} />
-          </button>
-          <span>1/10</span>
-          <button className="w-8 h-8 rounded-full bg-[#52637a] flex items-center justify-center text-white hover:bg-brand transition-colors">
-            <ChevronRight size={16} />
-          </button>
         </div>
 
       </div>

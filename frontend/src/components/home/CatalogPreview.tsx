@@ -8,7 +8,7 @@ export function CatalogPreview() {
   const categories = ["Cakes", "Wedding cakes", "Cupcakes", "Donuts", "Bakery"];
 
   return (
-    <section id="catalog" className="py-24 bg-[#fee2e2]">
+    <section id="catalog" className="py-24 bg-[#fcf0f0] text-foreground">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
         
         {/* Title */}

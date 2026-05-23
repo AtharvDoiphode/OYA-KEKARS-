@@ -7,7 +7,7 @@ import { InstagramIcon } from "../ui/Icons";
 
 export function InstagramFeed() {
   return (
-    <section className="py-20 bg-white">
+    <section id="blogs" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
         
         {/* Top Handle */}

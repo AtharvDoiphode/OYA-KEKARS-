@@ -7,7 +7,7 @@ import { WHATSAPP_NUMBER } from "../../lib/constants";
 
 export function Contacts() {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section id="contact" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
         
         <SectionTitle className="mb-20">CONTACTS</SectionTitle>
@@ -44,7 +44,7 @@ export function Contacts() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:w-1/3 bg-brand/10 p-8 pt-10 rounded-tl-xl rounded-bl-xl rounded-tr-xl rounded-br-[80px]"
+            className="lg:w-1/3 bg-[#fcf0f0] p-8 pt-10 rounded-tl-xl rounded-bl-xl rounded-tr-xl rounded-br-[80px]"
           >
             <p className="text-foreground font-medium mb-6 leading-relaxed">
               If you have any questions, fill in this form and we will get back to you as soon as possible
