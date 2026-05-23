@@ -1,0 +1,39 @@
+const miniBombee = {
+  id: 6,
+
+  slug: "mini-bombee-cake",
+
+  name: "Mini Bombee",
+
+  category: "mini-cakes",
+
+  image:
+    "/assets/cakes/minicakes/minibombee/minibombee.png",
+
+  price: 600,
+
+  shortDescription:
+    "Elegant bubble-style mini cake with a luxurious velvet finish and pearl detailing.",
+
+  description:
+    "A stunning modern mini cake crafted with a smooth velvet texture and signature bubble dome design. Decorated with edible pearls and crystal accents, this cake is perfect for birthdays, anniversaries, gifting, and aesthetic celebrations.",
+
+  flavorNote:
+    "All chocolate-based flavors (like Chocolate Cracker, Dutch Truffle, etc.) cost ₹100 extra.",
+
+  includes: [
+    "Premium bombee-style mini cake",
+    "Luxury velvet spray finish",
+    "Edible pearl decoration",
+    "Modern bubble dome design",
+    "Ideal for gifting and celebrations",
+  ],
+
+  customizable: true,
+
+  egglessAvailable: true,
+
+  featured: true,
+};
+
+export default miniBombee;
