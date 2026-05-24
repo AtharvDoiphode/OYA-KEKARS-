@@ -6,6 +6,7 @@ import upload from "../middleware/uploadMiddleware.js";
 
 import {
     getCakes,
+    getCakeById,
     addCake,
     updateCake,
     deleteCake
@@ -16,6 +17,7 @@ const router = express.Router();
 
 // PUBLIC ROUTE
 router.get("/", getCakes);
+router.get("/:id", getCakeById);
 
 
 // PROTECTED ROUTES

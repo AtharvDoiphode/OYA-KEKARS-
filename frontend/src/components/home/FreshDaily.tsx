@@ -13,17 +13,23 @@ export function FreshDaily() {
           viewport={{ once: true }}
           className="flex-1 w-full"
         >
-          <div className="relative aspect-square md:aspect-auto md:h-[600px] w-full rounded-[40px] overflow-hidden">
-            <Image 
-              src="https://images.unsplash.com/photo-1557925923-33b251d590e8?q=80&w=800&auto=format&fit=crop"
-              alt="Baking fresh cakes"
-              fill
-              className="object-cover"
-            />
-            {/* Red overlay badge */}
-            <div className="absolute top-8 left-8 bg-brand text-white p-6 rounded-full w-32 h-32 flex flex-col items-center justify-center text-center shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500">
-              <span className="font-serif text-3xl font-bold">100%</span>
-              <span className="text-xs tracking-wider uppercase font-medium mt-1">Veg</span>
+          <div className="relative">
+            <div className="relative aspect-square md:aspect-auto md:h-[600px] w-full rounded-[40px] overflow-hidden shadow-xl">
+              <Image 
+                src="/assets/cakes/regular/rose bouqet/rosebouqet.png"
+                alt="Beautiful Rose Bouquet Cake"
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Overlay badge half out */}
+            <div className="absolute -top-10 -left-10 bg-emerald-600/95 backdrop-blur-sm text-white p-4 rounded-full w-32 h-32 flex flex-col items-center justify-center text-center shadow-2xl border-4 border-white transition-all duration-500 hover:scale-105 rotate-12 hover:rotate-0 z-20">
+              {/* Authentic Veg Icon */}
+              <div className="flex items-center justify-center w-5 h-5 border-[2px] border-white rounded-sm shrink-0 mb-1">
+                <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
+              </div>
+              <span className="font-serif text-2xl font-bold leading-none mt-1">100%</span>
+              <span className="text-[10px] tracking-widest uppercase font-bold mt-1">Veg</span>
             </div>
           </div>
         </motion.div>

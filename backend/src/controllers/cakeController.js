@@ -19,6 +19,28 @@ export const getCakes = async (req, res) => {
 };
 
 
+// GET SINGLE CAKE
+export const getCakeById = async (req, res) => {
+
+    try {
+
+        const cake = await Cake.findById(req.params.id);
+
+        if (!cake) {
+            return res.status(404).json({ message: "Cake not found" });
+        }
+
+        res.status(200).json(cake);
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+
 // ADD CAKE
 export const addCake = async (req, res) => {
 

@@ -1,11 +1,38 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { GOOGLE_REVIEWS } from "../../lib/constants";
+import { useState, useEffect } from "react";
+import { GOOGLE_REVIEWS, Review } from "../../lib/constants";
 import { SectionTitle } from "../ui/SectionTitle";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function GoogleReviews() {
+  const [reviews, setReviews] = useState<Review[]>(GOOGLE_REVIEWS);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const res = await fetch("/api/reviews");
+        if (!res.ok) {
+          console.log("Live Google Reviews disabled (Missing API Key), using static fallback.");
+          return;
+        }
+        
+        const data = await res.json();
+        if (data.success && data.reviews && data.reviews.length > 0) {
+          setReviews(data.reviews);
+        }
+      } catch (error) {
+        console.error("Using fallback reviews (API Key likely missing):", error);
+        // Fallback to GOOGLE_REVIEWS is automatic since it's the initial state
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    fetchReviews();
+  }, []);
+
   return (
     <section id="reviews" className="py-24 bg-zinc-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
@@ -28,15 +55,20 @@ export function GoogleReviews() {
             }}
           >
             {/* Double the array for seamless infinite scroll */}
-            {[...GOOGLE_REVIEWS, ...GOOGLE_REVIEWS].map((review, idx) => (
+            {[...reviews, ...reviews].map((review, idx) => (
               <div 
-                key={idx} 
+                key={`${review.id}-${idx}`} 
                 className="bg-white p-10 rounded-sm shadow-xl min-w-[500px] md:min-w-[650px] flex gap-8 items-center"
               >
-                {/* Profile Image (alternating left/right logic simplified here) */}
+                {/* Profile Image */}
                 {idx % 2 === 0 && (
                   <div className="w-40 h-40 rounded-full overflow-hidden shrink-0 relative bg-gray-100">
-                    <Image src={`https://images.unsplash.com/photo-${1500000000000 + idx}?q=80&w=200&auto=format&fit=crop`} alt={review.name} fill className="object-cover" />
+                    <Image 
+                      src={(review as any).profilePhoto || `https://images.unsplash.com/photo-${1500000000000 + idx}?q=80&w=200&auto=format&fit=crop`} 
+                      alt={review.name} 
+                      fill 
+                      className="object-cover" 
+                    />
                   </div>
                 )}
                 
@@ -48,14 +80,27 @@ export function GoogleReviews() {
                   <p className="text-foreground/70 text-sm leading-relaxed mb-6">
                     «{review.text}»
                   </p>
-                  <p className="text-xs font-bold text-foreground">
-                    {review.name}, Pune
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs font-bold text-foreground">
+                      {review.name}
+                    </p>
+                    <span className="text-xs text-yellow-500 font-bold">
+                      {Array(Math.floor(review.rating)).fill("★").join("")}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      {review.date}
+                    </span>
+                  </div>
                 </div>
 
                 {idx % 2 !== 0 && (
                   <div className="w-40 h-40 rounded-full overflow-hidden shrink-0 relative bg-gray-100">
-                    <Image src={`https://images.unsplash.com/photo-${1600000000000 + idx}?q=80&w=200&auto=format&fit=crop`} alt={review.name} fill className="object-cover" />
+                    <Image 
+                      src={(review as any).profilePhoto || `https://images.unsplash.com/photo-${1600000000000 + idx}?q=80&w=200&auto=format&fit=crop`} 
+                      alt={review.name} 
+                      fill 
+                      className="object-cover" 
+                    />
                   </div>
                 )}
               </div>
@@ -65,17 +110,6 @@ export function GoogleReviews() {
           {/* Gradients to fade edges */}
           <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none"></div>
-        </div>
-
-        {/* Pagination controls */}
-        <div className="flex items-center gap-4 mt-12 text-sm font-semibold text-foreground/50">
-          <button className="w-8 h-8 rounded-full bg-[#52637a] flex items-center justify-center text-white hover:bg-brand transition-colors">
-            <ChevronLeft size={16} />
-          </button>
-          <span>1/10</span>
-          <button className="w-8 h-8 rounded-full bg-[#52637a] flex items-center justify-center text-white hover:bg-brand transition-colors">
-            <ChevronRight size={16} />
-          </button>
         </div>
 
       </div>

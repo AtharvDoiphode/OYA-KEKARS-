@@ -26,7 +26,7 @@ const team = [
 
 export function ChefInfo() {
   return (
-    <section className="py-24 bg-[#1a1a1a] text-white overflow-hidden">
+    <section className="py-24 bg-[#fcf0f0] text-foreground overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
 
         {/* Header */}
@@ -37,10 +37,10 @@ export function ChefInfo() {
           className="text-center mb-20"
         >
           <h4 className="text-brand font-medium tracking-widest text-sm uppercase mb-4">Meet The Team</h4>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             The heart behind the <span className="text-brand italic">Bakes.</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-foreground/70 text-lg max-w-2xl mx-auto leading-relaxed">
             Every cake that leaves our studio carries the passion, skill, and love of the incredible team behind Oya Kekars.
           </p>
         </motion.div>
@@ -74,7 +74,7 @@ export function ChefInfo() {
               {/* Info below card */}
               <div className="mt-6 text-center">
                 <p className="text-brand font-bold tracking-widest text-xs uppercase mb-2">{member.role}</p>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-xs">{member.description}</p>
+                <p className="text-foreground/70 text-sm leading-relaxed max-w-xs">{member.description}</p>
               </div>
             </motion.div>
           ))}

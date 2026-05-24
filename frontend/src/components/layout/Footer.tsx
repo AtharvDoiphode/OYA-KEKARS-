@@ -3,7 +3,7 @@ import { InstagramIcon } from "../ui/Icons";
 
 export function Footer() {
   return (
-    <footer className="bg-brand/20 pt-12 pb-8 text-foreground/80">
+    <footer className="bg-[#fcf0f0] pt-12 pb-8 text-foreground/80">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row justify-between gap-12">
           
