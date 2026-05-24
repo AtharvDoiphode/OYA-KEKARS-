@@ -58,7 +58,7 @@ export default function AddCake() {
         submitData.append("image", imageFile);
       }
 
-      const res = await fetch("http://localhost:5000/api/cakes", {
+      const res = await fetch((process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/cakes", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

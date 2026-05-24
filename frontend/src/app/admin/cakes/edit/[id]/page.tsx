@@ -29,7 +29,7 @@ export default function EditCake() {
   useEffect(() => {
     const fetchCake = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/cakes/${cakeId}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/cakes/${cakeId}`);
         if (!res.ok) throw new Error("Failed to fetch cake details");
         
         const data = await res.json();
@@ -95,7 +95,7 @@ export default function EditCake() {
         submitData.append("image", imageFile);
       }
 
-      const res = await fetch(`http://localhost:5000/api/cakes/${cakeId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/cakes/${cakeId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

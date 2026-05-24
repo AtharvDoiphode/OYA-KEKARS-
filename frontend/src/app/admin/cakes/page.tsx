@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus, Trash2, Loader2, Edit2 } from "lucide-react";
+import { Plus, Trash2, Loader2, Edit2, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Cake {
@@ -19,10 +19,12 @@ export default function AdminCakesList() {
   const [cakes, setCakes] = useState<Cake[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [displayCount, setDisplayCount] = useState(10);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchCakes = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/cakes");
+      const res = await fetch((process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/cakes");
       if (!res.ok) throw new Error("Failed to fetch cakes");
       const data = await res.json();
       setCakes(data);
@@ -42,7 +44,7 @@ export default function AdminCakesList() {
 
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(`http://localhost:5000/api/cakes/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/cakes/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -74,20 +76,40 @@ export default function AdminCakesList() {
     );
   }
 
+  const filteredCakes = cakes.filter((cake) => 
+    cake.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    cake.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="space-y-6 text-foreground font-sans">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Cakes Catalog</h1>
           <p className="text-foreground/70 mt-1">Manage all cakes in the store</p>
         </div>
-        <Link
-          href="/admin/cakes/add"
-          className="flex items-center gap-2 bg-brand hover:bg-brand/90 text-white px-4 py-2.5 rounded-lg font-medium transition-colors shadow-sm"
-        >
-          <Plus className="w-5 h-5" />
-          Add New Cake
-        </Link>
+        <div className="flex items-center gap-4 w-full sm:w-auto">
+          <div className="relative flex-1 sm:w-64">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input 
+              type="text" 
+              placeholder="Search cakes..." 
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setDisplayCount(10); // Reset pagination on search
+              }}
+              className="w-full pl-9 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand shadow-sm text-sm"
+            />
+          </div>
+          <Link
+            href="/admin/cakes/add"
+            className="flex items-center gap-2 bg-brand hover:bg-brand/90 text-white px-4 py-2 rounded-lg font-medium transition-colors shadow-sm whitespace-nowrap"
+          >
+            <Plus className="w-5 h-5" />
+            Add New Cake
+          </Link>
+        </div>
       </div>
 
       <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
@@ -104,14 +126,14 @@ export default function AdminCakesList() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {cakes.length === 0 ? (
+              {filteredCakes.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-6 py-8 text-center text-foreground/50">
-                    No cakes found. Add some to get started.
+                    {searchQuery ? "No cakes found matching your search." : "No cakes found. Add some to get started."}
                   </td>
                 </tr>
               ) : (
-                cakes.map((cake) => (
+                filteredCakes.slice(0, displayCount).map((cake) => (
                   <motion.tr
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -170,6 +192,17 @@ export default function AdminCakesList() {
               )}
             </tbody>
           </table>
+          
+          {filteredCakes.length > displayCount && (
+            <div className="p-6 flex justify-center bg-gray-50/50 border-t border-gray-200">
+              <button
+                onClick={() => setDisplayCount((prev) => prev + 10)}
+                className="px-8 py-2.5 bg-white border border-gray-300 text-foreground font-medium rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
+              >
+                Explore More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
