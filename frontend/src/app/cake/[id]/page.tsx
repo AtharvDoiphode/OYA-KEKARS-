@@ -1,27 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CAKE_CATALOG, WHATSAPP_NUMBER } from "@/lib/constants";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ChevronLeft, Check } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { CakeOrderForm } from "@/components/ui/CakeOrderForm";
 
-export async function generateStaticParams() {
-  return CAKE_CATALOG.map((cake) => ({
-    id: cake.id.toString(),
-  }));
-}
-
-export default function CakeDetailsPage({ params }: { params: { id: string } }) {
-  const cake = CAKE_CATALOG.find((c) => c.id.toString() === params.id);
-
-  if (!cake) {
+export default async function CakeDetailsPage({ params }: { params: { id: string } }) {
+  // Fetch from the backend
+  const res = await fetch(`http://localhost:5000/api/cakes/${params.id}`, { cache: "no-store" });
+  
+  if (!res.ok) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Cake not found</h1>
+      <div className="flex flex-col min-h-screen bg-white">
+        <Navbar />
+        <main className="flex-1 w-full pt-32 pb-24 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-4">Cake Not Found</h1>
+            <Link href="/#catalog" className="text-brand hover:underline">
+              Return to Catalog
+            </Link>
+          </div>
+        </main>
+        <Footer />
       </div>
     );
   }
+
+  const cake = await res.json();
+
+  const imageUrl = cake.image || "https://via.placeholder.com/800x800?text=No+Image";
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -41,21 +48,12 @@ export default function CakeDetailsPage({ params }: { params: { id: string } }) 
             <div className="lg:w-1/2 flex flex-col gap-4">
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-gray-50 border border-gray-100">
                 <Image 
-                  src={cake.image}
+                  src={imageUrl}
                   alt={cake.name}
                   fill
                   className="object-cover"
                 />
               </div>
-              {cake.gallery && cake.gallery.length > 1 && (
-                <div className="flex gap-4 overflow-x-auto pb-2">
-                  {cake.gallery.map((img, idx) => (
-                    <div key={idx} className="relative w-24 h-24 rounded-lg overflow-hidden shrink-0 cursor-pointer border-2 border-transparent hover:border-brand transition-colors">
-                      <Image src={img} alt={`${cake.name} view ${idx + 1}`} fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Right: Details */}
@@ -67,23 +65,14 @@ export default function CakeDetailsPage({ params }: { params: { id: string } }) 
                 {cake.name}
               </h1>
               <p className="text-2xl font-sans font-bold text-foreground mb-8">
-                {cake.price}
+                {cake.price > 0 ? `₹${cake.price}` : 'Price on Request'}
               </p>
 
-              <p className="text-foreground/80 leading-relaxed mb-10 text-lg">
-                {cake.description}
-              </p>
-
-              <div className="mb-10">
-                <h3 className="font-bold text-foreground mb-3 uppercase tracking-wider text-sm">Key Ingredients</h3>
-                <ul className="grid grid-cols-2 gap-y-2 gap-x-4">
-                  {cake.ingredients?.map((ing, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-foreground/80">
-                      <Check size={16} className="text-brand shrink-0" /> {ing}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {cake.description && (
+                <p className="text-foreground/80 leading-relaxed mb-10 text-lg whitespace-pre-wrap">
+                  {cake.description}
+                </p>
+              )}
 
               <CakeOrderForm cake={cake} />
 

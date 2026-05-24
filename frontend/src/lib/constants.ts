@@ -140,9 +140,31 @@ export const GOOGLE_REVIEWS: Review[] = [
   }
 ];
 
-export const INSTAGRAM_REELS: string[] = [
-  "https://images.unsplash.com/photo-1557308536-ee471ef2c390?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=400&auto=format&fit=crop"
+export interface InstagramReel {
+  url: string;
+  thumbnail: string;
+  caption: string;
+}
+
+export const INSTAGRAM_REELS: InstagramReel[] = [
+  {
+    url: "https://www.instagram.com/reel/DTRqZ7yCC9d/",
+    thumbnail: "/assets/reels/DTRqZ7yCC9d.jpg",
+    caption: "☁️ Tired of dry sponge? Try the \"Mousse\" Magic in Tilekar Nagar! 🍰"
+  },
+  {
+    url: "https://www.instagram.com/reel/DSmlEHYDeys/",
+    thumbnail: "/assets/reels/DSmlEHYDeys.jpg",
+    caption: "POV: You just found Pune’s dreamiest 10-minute dessert! 🍰✨"
+  },
+  {
+    url: "https://www.instagram.com/reel/DPRjljijXX_/",
+    thumbnail: "/assets/reels/DPRjljijXX_.jpg",
+    caption: "Serving Pune's finest cakes, right here in Tilekar Nagar, Kondhwa! 🎂✨"
+  },
+  {
+    url: "https://www.instagram.com/reel/Placeholder3/",
+    thumbnail: "https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=400&auto=format&fit=crop",
+    caption: "Freshly baked goodness everyday! ✨"
+  }
 ];

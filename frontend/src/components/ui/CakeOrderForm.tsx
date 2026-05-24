@@ -3,10 +3,10 @@ import { useState } from "react";
 import { WHATSAPP_NUMBER } from "../../lib/constants";
 
 export function CakeOrderForm({ cake }: { cake: any }) {
-  const [selectedSize, setSelectedSize] = useState(cake.sizes?.[0] || "");
+  const defaultSize = cake.weight || "1 Kg";
   const [isChocolate, setIsChocolate] = useState(false);
 
-  let message = `Hello, Oya Kekars! 🎂✨\nI would love to order a *${cake.name}* 🍰\nSize: *${selectedSize}* 📏`;
+  let message = `Hello, Oya Kekars! 🎂✨\nI would love to order a *${cake.name}* 🍰\nSize: *${defaultSize}* 📏`;
   
   if (isChocolate) {
     message += `\n\nFlavor: *Chocolate* 🍫`;
@@ -20,21 +20,11 @@ export function CakeOrderForm({ cake }: { cake: any }) {
     <div className="flex flex-col flex-1 mt-2">
       {/* Sizes */}
       <div className="mb-8">
-        <h3 className="font-bold text-foreground mb-3 uppercase tracking-wider text-sm">Available Sizes</h3>
+        <h3 className="font-bold text-foreground mb-3 uppercase tracking-wider text-sm">Weight</h3>
         <div className="flex flex-wrap gap-3">
-          {cake.sizes?.map((size: string, idx: number) => (
-            <button
-              key={idx}
-              onClick={() => setSelectedSize(size)}
-              className={`px-4 py-2 border rounded-md text-sm font-medium cursor-pointer transition-colors ${
-                selectedSize === size
-                  ? "border-brand text-brand bg-brand/5"
-                  : "border-gray-200 text-foreground/70 hover:border-brand"
-              }`}
-            >
-              {size}
-            </button>
-          ))}
+          <div className="px-4 py-2 border border-brand text-brand bg-brand/5 rounded-md text-sm font-medium">
+            {defaultSize}
+          </div>
         </div>
       </div>
 
@@ -72,8 +62,10 @@ export function CakeOrderForm({ cake }: { cake: any }) {
       {/* Order Box */}
       <div className="bg-zinc-50 p-6 rounded-xl border border-gray-100 mt-auto">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm font-medium text-foreground/70">Estimated Preparation:</span>
-          <span className="text-sm font-bold text-foreground">{cake.deliveryTime}</span>
+          <span className="text-sm font-medium text-foreground/70">Availability:</span>
+          <span className={`text-sm font-bold ${cake.available ? 'text-green-600' : 'text-red-500'}`}>
+            {cake.available ? "In Stock" : "Out of Stock"}
+          </span>
         </div>
         <a 
           href={whatsappUrl}
