@@ -1,5 +1,6 @@
 import { WHATSAPP_NUMBER } from "../../lib/constants";
 import { InstagramIcon } from "../ui/Icons";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -55,6 +56,7 @@ export function Footer() {
               <a href="#" className="text-xs hover:text-brand transition-colors">Leave a review</a>
               <a href="#" className="text-xs hover:text-brand transition-colors">Terms & Conditions</a>
               <a href="#" className="text-xs hover:text-brand transition-colors">Privacy</a>
+              <Link href="/admin" className="text-xs text-foreground/40 hover:text-brand transition-colors mt-4">Admin Login</Link>
             </div>
 
           </div>

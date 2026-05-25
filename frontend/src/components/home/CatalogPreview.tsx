@@ -38,7 +38,7 @@ Address: ${customFormData.address}`;
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/cakes")
+    fetch((process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/cakes")
       .then((res) => res.json())
       .then((data) => {
         setCakes(data);

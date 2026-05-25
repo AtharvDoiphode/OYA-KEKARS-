@@ -43,9 +43,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-[#fcf0f0] flex text-foreground font-sans">
+    <div className="h-screen overflow-hidden bg-[#fcf0f0] flex text-foreground font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
+      <aside className="w-64 shrink-0 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
         <div className="h-16 flex items-center px-6 border-b border-gray-100">
           <span className="text-xl font-bold text-brand flex items-center gap-2">
             <LayoutDashboard className="w-6 h-6" />
