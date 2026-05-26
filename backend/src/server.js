@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"],
+    origin: ["http://localhost:5173", "http://localhost:3000", process.env.FRONTEND_URL, "https://oya-kekars.vercel.app"],
     credentials: true
 }));
 
@@ -38,4 +38,12 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    
+    // Self-ping to keep Render free tier awake (every 14 minutes)
+    const backendUrl = "https://oya-kekars.onrender.com";
+    setInterval(() => {
+        fetch(backendUrl)
+            .then(() => console.log("Self-ping successful"))
+            .catch(err => console.log("Self-ping failed:", err.message));
+    }, 14 * 60 * 1000);
 });
