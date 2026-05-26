@@ -34,7 +34,7 @@ export function Contacts() {
           >
             <div>
               <h4 className="font-bold text-foreground mb-1">Working hours</h4>
-              <p className="text-foreground/70 text-sm">Mon to Sat: 10 a.m. to 11 p.m.</p>
+              <p className="text-foreground/70 text-sm">10 a.m. to 11 p.m.</p>
             </div>
             <div>
               <h4 className="font-bold text-foreground mb-1">Phone / WhatsApp</h4>
