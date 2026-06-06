@@ -7,13 +7,17 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import connectDB from "./config/db.js";
+import seedAdmin from "./utils/seedAdmin.js";
 
 import authRoutes from "./routes/authRoutes.js";
 import cakeRoutes from "./routes/cakeRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 const app = express();
 
-connectDB();
+connectDB().then(() => {
+    seedAdmin();
+});
 
 app.use(express.json());
 
@@ -28,6 +32,8 @@ app.use(cors({
 app.use("/api/auth", authRoutes);
 
 app.use("/api/cakes", cakeRoutes);
+
+app.use("/api/reviews", reviewRoutes);
 
 
 app.get("/", (req, res) => {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, CakeSlice, PlusCircle, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, CakeSlice, PlusCircle, LogOut, Menu, X, MessageSquare } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -11,11 +11,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Exclude login page from layout auth checks and sidebar
-  const isLoginPage = pathname === "/admin/login";
+  // Exclude auth pages from layout auth checks and sidebar
+  const isAuthPage = pathname === "/admin/login" || pathname === "/admin/forgot-password" || pathname.startsWith("/admin/reset-password");
 
   useEffect(() => {
-    if (isLoginPage) return;
+    if (isAuthPage) return;
 
     const token = localStorage.getItem("adminToken");
     if (!token) {
@@ -23,7 +23,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     } else {
       setIsAuthorized(true);
     }
-  }, [router, isLoginPage]);
+  }, [router, isAuthPage, pathname]);
 
   useEffect(() => {
     // Close mobile menu on route change
@@ -35,7 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.push("/admin/login");
   };
 
-  if (isLoginPage) {
+  if (isAuthPage) {
     return <>{children}</>;
   }
 
@@ -46,6 +46,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const navItems = [
     { name: "Cakes List", href: "/admin/cakes", icon: CakeSlice },
     { name: "Add Cake", href: "/admin/cakes/add", icon: PlusCircle },
+    { name: "Reviews", href: "/admin/reviews", icon: MessageSquare },
   ];
 
   return (

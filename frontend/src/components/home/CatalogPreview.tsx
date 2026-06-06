@@ -6,6 +6,7 @@ import { SectionTitle } from "../ui/SectionTitle";
 import { Sparkles, Star, Wand2 } from "lucide-react";
 
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "../../lib/constants";
 
 export function CatalogPreview({ isFullCatalog = false }: { isFullCatalog?: boolean }) {
   const [visibleCount, setVisibleCount] = useState(isFullCatalog ? 1000 : 8);
@@ -13,28 +14,10 @@ export function CatalogPreview({ isFullCatalog = false }: { isFullCatalog?: bool
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const [showCustomModal, setShowCustomModal] = useState(false);
-  const [customFormData, setCustomFormData] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    themeName: "",
-    themeDescription: ""
-  });
-
-  const handleCustomOrderSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const message = `Hello! I would like to order a Custom Theme Cake.
-Theme Name: ${customFormData.themeName}
-Description: ${customFormData.themeDescription}
-
-Name: ${customFormData.name}
-Phone: ${customFormData.phone}
-Address: ${customFormData.address}`;
-
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+  const handleCustomOrderSubmit = () => {
+    const message = `Hello! I would like to order a Custom Theme Cake.\n\nPlease let me know the details and options!`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
-    setShowCustomModal(false);
   };
 
   useEffect(() => {
@@ -211,7 +194,7 @@ Address: ${customFormData.address}`;
         {/* Custom Cake Button */}
         <div className="flex justify-center mb-16 w-full px-6">
           <button 
-            onClick={() => setShowCustomModal(true)}
+            onClick={() => handleCustomOrderSubmit()}
             className="group relative w-full sm:w-auto px-6 py-2.5 bg-brand text-white overflow-hidden rounded-xl font-bold tracking-wide flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             {/* Shimmer Sweep Animation */}
@@ -290,77 +273,6 @@ Address: ${customFormData.address}`;
         )}
 
       </div>
-
-      {/* Custom Theme Popup Modal */}
-      <AnimatePresence>
-        {showCustomModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ position: 'fixed' }}>
-            <motion.div 
-              initial={{opacity:0}} 
-              animate={{opacity:1}} 
-              exit={{opacity:0}} 
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
-              onClick={() => setShowCustomModal(false)} 
-            />
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white w-full max-w-md rounded-[24px] shadow-2xl p-5 md:p-6 z-10 overflow-y-auto max-h-[90vh]"
-            >
-              <button 
-                onClick={() => setShowCustomModal(false)} 
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors bg-gray-50 hover:bg-gray-200 rounded-full p-1.5"
-                aria-label="Close modal"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-              
-              <div className="mb-4 pr-8">
-                <h3 className="text-xl font-bold text-[#1a1a24] flex items-center gap-2" style={{ fontFamily: "var(--font-playfair), serif" }}>
-                  <Sparkles className="text-brand" size={20} />
-                  Custom Theme Cake
-                </h3>
-                <p className="text-xs font-medium text-gray-500 mt-0.5">Design your dream cake with us!</p>
-              </div>
-              
-              <form onSubmit={handleCustomOrderSubmit} className="space-y-3 text-left">
-                <div>
-                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-1 ml-1">Full Name</label>
-                  <input required type="text" value={customFormData.name} onChange={e => setCustomFormData({...customFormData, name: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-brand/50 focus:ring-4 focus:ring-brand/10 transition-all text-sm font-medium text-foreground placeholder:text-gray-400 shadow-sm" placeholder="Enter your name" />
-                </div>
-                
-                <div>
-                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-1 ml-1">Phone Number</label>
-                  <input required type="tel" value={customFormData.phone} onChange={e => setCustomFormData({...customFormData, phone: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-brand/50 focus:ring-4 focus:ring-brand/10 transition-all text-sm font-medium text-foreground placeholder:text-gray-400 shadow-sm" placeholder="+91 98765 43210" />
-                </div>
-                
-                <div>
-                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-1 ml-1">Address</label>
-                  <input required type="text" value={customFormData.address} onChange={e => setCustomFormData({...customFormData, address: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-brand/50 focus:ring-4 focus:ring-brand/10 transition-all text-sm font-medium text-foreground placeholder:text-gray-400 shadow-sm" placeholder="Enter full address in Pune" />
-                </div>
-                
-                <div>
-                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-1 ml-1">Theme Name</label>
-                  <input required type="text" value={customFormData.themeName} onChange={e => setCustomFormData({...customFormData, themeName: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-brand/50 focus:ring-4 focus:ring-brand/10 transition-all text-sm font-medium text-foreground placeholder:text-gray-400 shadow-sm" placeholder="e.g. Spiderman, Jungle Safari" />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-[0.1em] mb-1 ml-1">Theme Description</label>
-                  <textarea required rows={2} value={customFormData.themeDescription} onChange={e => setCustomFormData({...customFormData, themeDescription: e.target.value})} className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-brand/50 focus:ring-4 focus:ring-brand/10 transition-all text-sm font-medium text-foreground placeholder:text-gray-400 resize-none shadow-sm" placeholder="Describe how you want the cake to look..." />
-                </div>
-                
-                <button type="submit" className="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-[#d91d24] hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-brand/30 mt-4 flex justify-center items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                  Order via WhatsApp
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
     </section>
   );
 }

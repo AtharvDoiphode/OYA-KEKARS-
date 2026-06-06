@@ -55,7 +55,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center justify-center gap-10 text-sm font-medium text-white/90 shrink-0">
+        <div className="hidden lg:flex items-center justify-center gap-6 xl:gap-10 text-sm font-medium text-white/90 shrink-0">
           <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
           <Link href="/catalog" className="hover:text-white transition-colors">Catalog</Link>
           <a href="https://instagram.com/oyakekars_3jewels" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>

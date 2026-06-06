@@ -59,7 +59,7 @@ export function HeroSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-col w-full lg:w-[45%] shrink-0"
+          className="flex flex-col w-full lg:w-1/2 xl:w-[45%] shrink-0 z-20"
         >
           <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
             <div className="h-[2px] w-10 bg-white/60"></div>
@@ -141,7 +141,7 @@ export function HeroSection() {
             x: { duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
             y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }
           }}
-          className="w-full lg:w-[55%] h-[350px] sm:h-[450px] lg:h-[500px] xl:h-[560px] relative mt-8 lg:mt-0"
+          className="w-full lg:flex-1 h-[350px] sm:h-[450px] lg:h-[450px] xl:h-[560px] relative mt-8 lg:mt-0 z-10"
         >
           {/* Main Arch Container */}
           <div className="absolute inset-0 rounded-t-[200px] rounded-b-[24px] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border-[6px] border-white z-10 bg-white">

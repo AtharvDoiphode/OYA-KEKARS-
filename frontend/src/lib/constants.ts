@@ -112,31 +112,45 @@ export interface Review {
 export const GOOGLE_REVIEWS: Review[] = [
   {
     id: 1,
-    name: "Anjali Sharma",
+    name: "Pallavi Tumma",
     rating: 5,
-    text: "The best cakes in Pune! Ordered a custom wedding cake and it was flawless. Highly recommend the Belgian Chocolate.",
-    date: "2 weeks ago"
+    text: "Oya Kekars truly makes one of the best cakes I have ever tasted. The moment you take a bite, it simply melts in your mouth. The cake was soft, fresh, and absolutely delightful. Not only are the cakes beautifully designed, but the taste is even more fabulous than the appearance. Highly recommended for anyone looking to make their special occasions even sweeter!",
+    date: "3 months ago"
   },
   {
     id: 2,
-    name: "Rahul Desai",
+    name: "Riddhi Aglave",
     rating: 5,
-    text: "Amazing taste and beautiful presentation. The staff is very polite and ordering on WhatsApp was seamless.",
-    date: "1 month ago"
-  },
-  {
-    id: 3,
-    name: "Priya Patel",
-    rating: 5,
-    text: "Their Red Velvet is to die for! The 100% vegetarian guarantee makes it our go-to place for all family birthdays.",
+    text: "I have tried the cakes from Oya Kekars – Three Jewels, and they are absolutely amazing! Every type of cake I tasted was incredibly awesome, fresh, rich, and beautifully crafted. The Dutch Chocolate Cake is pure heaven for me. Easily one of the best chocolate cakes I've ever had! Highly recommended for anyone who loves great desserts. Definitely one of the best places for cakes in Pune!",
     date: "2 months ago"
   },
   {
-    id: 4,
-    name: "Vikram Singh",
+    id: 3,
+    name: "Mrunali Bhosale",
     rating: 5,
-    text: "Premium quality European cakes right here in Pune. The texture and balance of sweetness is perfect.",
-    date: "3 months ago"
+    text: "I ordered a Pillow cake from Oya Kekars for my 6-month anniversary, and it was absolutely delicious! I loved it. The staff was very cooperative. Thank you, Oya Kekars, for making our day so special!",
+    date: "6 months ago"
+  },
+  {
+    id: 4,
+    name: "Akanksha Nadkarni",
+    rating: 5,
+    text: "The cakes from Oya Cakekars are really fresh, tasty and beautifully decorated. The service is friendly and on time. We truly enjoyed the experience and would definitely recommend them to others.",
+    date: "8 months ago"
+  },
+  {
+    id: 5,
+    name: "Siddhi Nikam",
+    rating: 5,
+    text: "The design and detailing on the cake were absolutely stunning. But the best part was that it tasted even better than it looked. Truly the perfect balance of art and flavor!",
+    date: "2 weeks ago"
+  },
+  {
+    id: 6,
+    name: "Abhishek Thakur",
+    rating: 5,
+    text: "Cake are awesome, freshly made on every order, best cake shop in tilekarnagar. Highly recommend for vegetarians, menu is all vegetarian!",
+    date: "1 month ago"
   }
 ];
 

@@ -1,38 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Lock, Mail, Loader2, ArrowRight, UserPlus } from "lucide-react";
+import { Lock, Mail, Loader2, ArrowRight } from "lucide-react";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [checkingStatus, setCheckingStatus] = useState(true);
-  const [isSetupMode, setIsSetupMode] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-
-  useEffect(() => {
-    const checkStatus = async () => {
-      try {
-        const res = await fetch((process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/auth/status");
-        if (res.ok) {
-          const data = await res.json();
-          if (!data.hasAdmin) {
-            setIsSetupMode(true);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to check admin status", err);
-      } finally {
-        setCheckingStatus(false);
-      }
-    };
-    checkStatus();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,9 +19,7 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      const endpoint = isSetupMode 
-        ? (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/auth/register" 
-        : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/auth/login";
+      const endpoint = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/auth/login";
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -55,7 +32,7 @@ export default function AdminLogin() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || (isSetupMode ? "Registration failed" : "Login failed"));
+        throw new Error(data.message || "Login failed");
       }
 
       // Store token
@@ -68,14 +45,6 @@ export default function AdminLogin() {
     }
   };
 
-  if (checkingStatus) {
-    return (
-      <div className="min-h-screen bg-[#fcf0f0] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-brand" />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#fcf0f0] text-foreground flex items-center justify-center p-4 font-sans">
       <motion.div
@@ -86,10 +55,10 @@ export default function AdminLogin() {
         <div className="p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-2">
-              {isSetupMode ? "Admin Setup" : "Admin Panel"}
+              Admin Panel
             </h1>
             <p className="text-foreground/70">
-              {isSetupMode ? "Create your master admin account" : "Sign in to manage OYA-KEKARS"}
+              Sign in to manage OYA-KEKARS
             </p>
           </div>
 
@@ -117,7 +86,7 @@ export default function AdminLogin() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-shadow"
-                  placeholder="admin@oyakekars.com"
+                  placeholder="oyakekars.3jewels@gmail.com"
                   required
                 />
               </div>
@@ -128,11 +97,9 @@ export default function AdminLogin() {
                 <label className="block text-sm font-medium text-foreground/80">
                   Password
                 </label>
-                {!isSetupMode && (
-                  <Link href="/admin/forgot-password" className="text-xs text-brand hover:underline">
-                    Forgot password?
-                  </Link>
-                )}
+                <Link href="/admin/forgot-password" className="text-xs text-brand hover:underline">
+                  Forgot password?
+                </Link>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -157,13 +124,7 @@ export default function AdminLogin() {
               {loading ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
               ) : (
-                <>
-                  {isSetupMode ? (
-                    <>Create Account <UserPlus className="ml-2 h-4 w-4" /></>
-                  ) : (
-                    <>Sign In <ArrowRight className="ml-2 h-4 w-4" /></>
-                  )}
-                </>
+                <>Sign In <ArrowRight className="ml-2 h-4 w-4" /></>
               )}
             </button>
           </form>

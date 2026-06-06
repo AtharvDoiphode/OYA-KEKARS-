@@ -1,9 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+
 import { useState, useEffect } from "react";
 import { GOOGLE_REVIEWS, Review } from "../../lib/constants";
 import { SectionTitle } from "../ui/SectionTitle";
+import { ReviewForm } from "./ReviewForm";
 
 export function GoogleReviews() {
   const [reviews, setReviews] = useState<Review[]>(GOOGLE_REVIEWS);
@@ -12,9 +13,11 @@ export function GoogleReviews() {
   useEffect(() => {
     async function fetchReviews() {
       try {
-        const res = await fetch("/api/reviews");
+        const res = await fetch(
+          (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000") + "/api/reviews"
+        );
         if (!res.ok) {
-          console.log("Live Google Reviews disabled (Missing API Key), using static fallback.");
+          console.log("Live reviews not available, using static fallback.");
           return;
         }
         
@@ -23,7 +26,7 @@ export function GoogleReviews() {
           setReviews(data.reviews);
         }
       } catch (error) {
-        console.error("Using fallback reviews (API Key likely missing):", error);
+        console.error("Using fallback reviews:", error);
         // Fallback to GOOGLE_REVIEWS is automatic since it's the initial state
       } finally {
         setIsLoading(false);
@@ -63,11 +66,10 @@ export function GoogleReviews() {
                 {/* Profile Image */}
                 {idx % 2 === 0 && (
                   <div className="w-40 h-40 rounded-full overflow-hidden shrink-0 relative bg-gray-100">
-                    <Image 
-                      src={(review as any).profilePhoto || `https://images.unsplash.com/photo-${1500000000000 + idx}?q=80&w=200&auto=format&fit=crop`} 
+                    <img 
+                      src={(review as any).profilePhoto || `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=E3242B&color=fff&size=200&font-size=0.4&bold=true`} 
                       alt={review.name} 
-                      fill 
-                      className="object-cover" 
+                      className="w-full h-full object-cover" 
                     />
                   </div>
                 )}
@@ -95,11 +97,10 @@ export function GoogleReviews() {
 
                 {idx % 2 !== 0 && (
                   <div className="w-40 h-40 rounded-full overflow-hidden shrink-0 relative bg-gray-100">
-                    <Image 
-                      src={(review as any).profilePhoto || `https://images.unsplash.com/photo-${1600000000000 + idx}?q=80&w=200&auto=format&fit=crop`} 
+                    <img 
+                      src={(review as any).profilePhoto || `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=E3242B&color=fff&size=200&font-size=0.4&bold=true`} 
                       alt={review.name} 
-                      fill 
-                      className="object-cover" 
+                      className="w-full h-full object-cover" 
                     />
                   </div>
                 )}
@@ -111,6 +112,9 @@ export function GoogleReviews() {
           <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-zinc-50 to-transparent z-10 pointer-events-none"></div>
         </div>
+
+        {/* Review Submission Form */}
+        <ReviewForm />
 
       </div>
     </section>
