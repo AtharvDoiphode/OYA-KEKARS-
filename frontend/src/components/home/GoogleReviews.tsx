@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GOOGLE_REVIEWS, Review } from "../../lib/constants";
 import { SectionTitle } from "../ui/SectionTitle";
 import { ReviewForm } from "./ReviewForm";
@@ -36,6 +36,51 @@ export function GoogleReviews() {
     fetchReviews();
   }, []);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll logic that allows manual scrolling
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationId: number;
+    let isHovered = false;
+    let isDragging = false;
+
+    const scroll = () => {
+      if (!isHovered && !isDragging) {
+        scrollContainer.scrollLeft += 0.5; // Adjust speed here
+        // If we've scrolled past the first half of the duplicated reviews, jump back
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+          scrollContainer.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+
+    const handleMouseEnter = () => isHovered = true;
+    const handleMouseLeave = () => isHovered = false;
+    const handleTouchStart = () => isDragging = true;
+    const handleTouchEnd = () => {
+      setTimeout(() => { isDragging = false; }, 1000); // Wait a bit after touch ends to resume
+    };
+
+    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
+    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
+      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
+
   return (
     <section id="reviews" className="py-24 bg-zinc-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
@@ -43,20 +88,22 @@ export function GoogleReviews() {
         {/* Title */}
         <SectionTitle className="mb-16">REVIEWS</SectionTitle>
 
-        {/* Marquee effect for reviews */}
-        <div className="relative w-full flex overflow-x-hidden py-8">
-          <motion.div 
-            className="flex gap-8 px-4"
-            animate={{ x: [0, -2000] }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 35,
-                ease: "linear",
-              },
+        {/* Scrollable Container for reviews */}
+        <div className="relative w-full py-8">
+          <div 
+            ref={scrollRef}
+            className="flex gap-8 px-4 overflow-x-auto no-scrollbar"
+            style={{ 
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none'  /* IE and Edge */
             }}
           >
+            <style jsx>{`
+              .no-scrollbar::-webkit-scrollbar {
+                display: none; /* Chrome, Safari and Opera */
+              }
+            `}</style>
+            
             {/* Double the array for seamless infinite scroll */}
             {[...reviews, ...reviews].map((review, idx) => (
               <div 
@@ -106,7 +153,7 @@ export function GoogleReviews() {
                 )}
               </div>
             ))}
-          </motion.div>
+          </div>
           
           {/* Gradients to fade edges */}
           <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-zinc-50 to-transparent z-10 pointer-events-none"></div>
