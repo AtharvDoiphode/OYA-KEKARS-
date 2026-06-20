@@ -35,13 +35,13 @@ export function AboutUs() {
             <SectionTitle className="mb-8">ABOUT US</SectionTitle>
             <h3 className="text-2xl font-serif font-bold text-foreground mb-6">
               Baking memories in Pune since 2018. <br />
-              <span className="text-xl text-brand mt-2 block">Serving Three Jewels since Nov 2024.</span>
+              <span className="text-xl text-brand mt-2 block">Serving Tilekar Nagar since Nov 2024.</span>
             </h3>
             <p className="text-foreground/70 leading-relaxed mb-6">
-              Welcome to the Three Jewels branch of Oya Kekars, your local destination for Pune's most beloved premium bakery. Led by Harshada Ankam, our branch brings the signature Oya Kekars experience right to your neighborhood. We believe that every celebration in our community deserves a centerpiece that looks as spectacular as it tastes.
+              Welcome to the Tilekar Nagar branch of Oya Kekars, your local destination for Pune's most beloved premium bakery. Led by Harshada Ankam, our branch brings the signature Oya Kekars experience right to your neighborhood. We believe that every celebration in our community deserves a centerpiece that looks as spectacular as it tastes.
             </p>
             <p className="text-foreground/70 leading-relaxed mb-8">
-              We specialize in 100% vegetarian, European-style cakes and desserts. Our mission is simple: to bring joy to your special moments using only the finest ingredients, zero preservatives, and a whole lot of love. Every cake that leaves our Three Jewels kitchen is handcrafted, ensuring that your birthday, wedding, or quiet evening craving is nothing short of perfect.
+              We specialize in 100% vegetarian, European-style cakes and desserts. Our mission is simple: to bring joy to your special moments using only the finest ingredients, zero preservatives, and a whole lot of love. Every cake that leaves our Tilekar Nagar kitchen is handcrafted, ensuring that your birthday, wedding, or quiet evening craving is nothing short of perfect.
             </p>
             
             <div className="flex gap-12 border-t border-gray-200 pt-8 w-full">

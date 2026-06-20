@@ -6,9 +6,9 @@ import { SectionTitle } from "../ui/SectionTitle";
 const team = [
   {
     name: "Harshada Ankam",
-    role: "Owner, Three Jewels Branch",
+    role: "Owner, Tilekar Nagar Branch",
     image: "https://res.cloudinary.com/dvxtbexde/image/upload/v1781952816/oya_kekars_team/nbp5moyrbgxtk7i7cd8h.jpg",
-    description: "Proud owner of the Oya Kekars franchise at Three Jewels. Dedicated to bringing premium, handcrafted cakes and desserts to our local community.",
+    description: "Proud owner of the Oya Kekars franchise at Tilekar Nagar. Dedicated to bringing premium, handcrafted cakes and desserts to our local community.",
   },
   {
     name: "Chef 1",
