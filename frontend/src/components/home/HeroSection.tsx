@@ -161,6 +161,7 @@ export function HeroSection() {
                   src={HERO_IMAGES[currentImageIdx]}
                   alt={`Signature Cake ${currentImageIdx + 1}`}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                   priority={currentImageIdx === 0}
                 />

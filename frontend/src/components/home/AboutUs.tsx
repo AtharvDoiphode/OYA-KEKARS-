@@ -8,7 +8,7 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const motionValue = useMotionValue(0);
-  const rounded = useTransform(motionValue, (latest) => Math.round(latest) + suffix);
+  const rounded = useTransform(motionValue, (latest) => (latest % 1 !== 0 ? latest.toFixed(1) : Math.round(latest)) + suffix);
 
   useEffect(() => {
     if (isInView) {
@@ -34,22 +34,23 @@ export function AboutUs() {
           >
             <SectionTitle className="mb-8">ABOUT US</SectionTitle>
             <h3 className="text-2xl font-serif font-bold text-foreground mb-6">
-              Baking memories in Pune since 2018.
+              Baking memories in Pune since 2018. <br />
+              <span className="text-xl text-brand mt-2 block">Serving Three Jewels since Nov 2024.</span>
             </h3>
             <p className="text-foreground/70 leading-relaxed mb-6">
-              What started as a small home kitchen experiment has grown into Pune's most beloved premium bakery. At Oya Kekars, we believe that every celebration deserves a centerpiece that looks as spectacular as it tastes.
+              Welcome to the Three Jewels branch of Oya Kekars, your local destination for Pune's most beloved premium bakery. Led by Harshada Ankam, our branch brings the signature Oya Kekars experience right to your neighborhood. We believe that every celebration in our community deserves a centerpiece that looks as spectacular as it tastes.
             </p>
             <p className="text-foreground/70 leading-relaxed mb-8">
-              We specialize in 100% vegetarian, European-style cakes and desserts. Our mission is simple: to bring joy to your special moments using only the finest ingredients, zero preservatives, and a whole lot of love. Every cake that leaves our studio is handcrafted, ensuring that your birthday, wedding, or quiet evening craving is nothing short of perfect.
+              We specialize in 100% vegetarian, European-style cakes and desserts. Our mission is simple: to bring joy to your special moments using only the finest ingredients, zero preservatives, and a whole lot of love. Every cake that leaves our Three Jewels kitchen is handcrafted, ensuring that your birthday, wedding, or quiet evening craving is nothing short of perfect.
             </p>
             
             <div className="flex gap-12 border-t border-gray-200 pt-8 w-full">
               <div>
-                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={6} suffix="+" /></p>
+                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={1.5} suffix="+" /></p>
                 <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wider">Years Experience</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={15} suffix="k+" /></p>
+                <p className="text-4xl font-bold text-brand mb-1"><AnimatedNumber value={8} suffix="k+" /></p>
                 <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wider">Happy Customers</p>
               </div>
             </div>
@@ -68,6 +69,7 @@ export function AboutUs() {
                 src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop" 
                 alt="Bakery Interior" 
                 fill 
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -77,6 +79,7 @@ export function AboutUs() {
                 src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=600&auto=format&fit=crop" 
                 alt="Baking Process" 
                 fill 
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

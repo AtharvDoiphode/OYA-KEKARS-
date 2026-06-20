@@ -5,22 +5,16 @@ import { SectionTitle } from "../ui/SectionTitle";
 
 const team = [
   {
-    name: "Owner Name",
-    role: "Founder & Owner",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop",
-    description: "The visionary behind Oya Kekars. Turned a passion for premium baking into Pune's most loved cake brand.",
+    name: "Harshada Ankam",
+    role: "Owner, Three Jewels Branch",
+    image: "https://res.cloudinary.com/dvxtbexde/image/upload/v1781952816/oya_kekars_team/nbp5moyrbgxtk7i7cd8h.jpg",
+    description: "Proud owner of the Oya Kekars franchise at Three Jewels. Dedicated to bringing premium, handcrafted cakes and desserts to our local community.",
   },
   {
     name: "Chef 1",
     role: "Head Pastry Chef",
     image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=600&auto=format&fit=crop",
     description: "Specializes in European-style cakes and custom wedding designs. 8+ years of professional experience.",
-  },
-  {
-    name: "Chef 2",
-    role: "Creative Chef",
-    image: "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=600&auto=format&fit=crop",
-    description: "The creative force behind our seasonal specials and trending flavor combinations. Master of presentation.",
   },
 ];
 
@@ -46,7 +40,7 @@ export function ChefInfo() {
         </motion.div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-4xl mx-auto">
           {team.map((member, idx) => (
             <motion.div
               key={idx}
@@ -63,6 +57,7 @@ export function ChefInfo() {
                     src={member.image}
                     alt={member.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
                   />
                 </div>

@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { CatalogPreview } from "@/components/home/CatalogPreview";
 import { FreshDaily } from "@/components/home/FreshDaily";
-import { HowItWorks } from "@/components/home/HowItWorks";
+
 import { AboutUs } from "@/components/home/AboutUs";
 import { ChefInfo } from "@/components/home/ChefInfo";
 import { GoogleReviews } from "@/components/home/GoogleReviews";
@@ -18,7 +18,7 @@ export default function Home() {
         <HeroSection />
         <CatalogPreview />
         <FreshDaily />
-        <HowItWorks />
+
         <AboutUs />
         <ChefInfo />
         <GoogleReviews />

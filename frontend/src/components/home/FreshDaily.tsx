@@ -19,6 +19,8 @@ export function FreshDaily() {
                 src="/assets/cakes/regular/rose bouqet/rosebouqet.png"
                 alt="Beautiful Rose Bouquet Cake"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                loading="eager"
                 className="object-cover"
               />
             </div>
