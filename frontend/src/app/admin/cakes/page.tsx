@@ -36,6 +36,7 @@ export default function AdminCakesList() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchCakes();
   }, []);
 

@@ -38,7 +38,7 @@ export function AboutUs() {
               <span className="text-xl text-brand mt-2 block">Serving Tilekar Nagar since Nov 2024.</span>
             </h3>
             <p className="text-foreground/70 leading-relaxed mb-6">
-              Welcome to the Tilekar Nagar branch of Oya Kekars, your local destination for Pune's most beloved premium bakery. Led by Harshada Ankam, our branch brings the signature Oya Kekars experience right to your neighborhood. We believe that every celebration in our community deserves a centerpiece that looks as spectacular as it tastes.
+              Welcome to the Tilekar Nagar branch of Oya Kekars, your local destination for Pune&apos;s most beloved premium bakery. Led by Harshada Ankam, our branch brings the signature Oya Kekars experience right to your neighborhood. We believe that every celebration in our community deserves a centerpiece that looks as spectacular as it tastes.
             </p>
             <p className="text-foreground/70 leading-relaxed mb-8">
               We specialize in 100% vegetarian, European-style cakes and desserts. Our mission is simple: to bring joy to your special moments using only the finest ingredients, zero preservatives, and a whole lot of love. Every cake that leaves our Tilekar Nagar kitchen is handcrafted, ensuring that your birthday, wedding, or quiet evening craving is nothing short of perfect.

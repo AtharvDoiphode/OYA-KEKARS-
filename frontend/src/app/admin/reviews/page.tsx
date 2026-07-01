@@ -42,6 +42,7 @@ export default function AdminReviewsList() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchReviews();
   }, []);
 

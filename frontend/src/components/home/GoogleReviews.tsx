@@ -122,7 +122,7 @@ export function GoogleReviews() {
                 )}
                 
                 <div className="flex-1">
-                  <div className="text-5xl font-serif text-brand mb-4 leading-none h-6">"</div>
+                  <div className="text-5xl font-serif text-brand mb-4 leading-none h-6">&quot;</div>
                   <h4 className="text-xl md:text-2xl font-serif text-foreground font-semibold mb-4 leading-snug">
                     «{review.text.split('.')[0]}»
                   </h4>

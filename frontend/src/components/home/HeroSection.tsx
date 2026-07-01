@@ -81,7 +81,7 @@ export function HeroSection() {
             className="mt-8 text-white/80 max-w-md text-sm lg:text-[1.05rem] leading-[1.8] tracking-[0.02em] font-medium"
             style={{ fontFamily: "var(--font-jakarta), sans-serif" }}
           >
-            Pune's premier 100% vegetarian cakes. Handcrafted with elite ingredients for unforgettable celebrations.
+            Pune&apos;s premier 100% vegetarian cakes. Handcrafted with elite ingredients for unforgettable celebrations.
           </motion.p>
 
           <motion.div 

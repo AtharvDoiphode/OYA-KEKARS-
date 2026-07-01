@@ -46,16 +46,15 @@ export function Footer() {
 
             <div className="flex flex-col gap-3">
               <h4 className="font-bold text-foreground text-sm mb-1">About</h4>
-              <a href="#" className="text-xs hover:text-brand transition-colors">About us</a>
-              <a href="#" className="text-xs hover:text-brand transition-colors">Catalog</a>
-              <a href="#" className="text-xs hover:text-brand transition-colors">Delivery</a>
+              <Link href="/about" className="text-xs hover:text-brand transition-colors">About us</Link>
+              <Link href="/catalog" className="text-xs hover:text-brand transition-colors">Catalog</Link>
             </div>
 
             <div className="flex flex-col gap-3">
               <h4 className="font-bold text-foreground text-sm mb-1">Support</h4>
-              <a href="#" className="text-xs hover:text-brand transition-colors">Leave a review</a>
-              <a href="#" className="text-xs hover:text-brand transition-colors">Terms & Conditions</a>
-              <a href="#" className="text-xs hover:text-brand transition-colors">Privacy</a>
+              <Link href="/review" className="text-xs hover:text-brand transition-colors">Leave a review</Link>
+              <Link href="/terms" className="text-xs hover:text-brand transition-colors">Terms & Conditions</Link>
+              <Link href="/privacy" className="text-xs hover:text-brand transition-colors">Privacy</Link>
               <Link href="/admin" className="text-xs text-foreground/40 hover:text-brand transition-colors mt-4">Admin Login</Link>
             </div>
 

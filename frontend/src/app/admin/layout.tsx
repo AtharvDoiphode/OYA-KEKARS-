@@ -21,12 +21,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (!token) {
       router.push("/admin/login");
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsAuthorized(true);
     }
   }, [router, isAuthPage, pathname]);
 
   useEffect(() => {
     // Close mobile menu on route change
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMobileMenuOpen(false);
   }, [pathname]);
 

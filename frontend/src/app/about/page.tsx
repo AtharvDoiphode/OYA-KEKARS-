@@ -120,10 +120,10 @@ export default function AboutPage() {
                     Born from a deep passion for the culinary arts, OYA Kekars began its journey in 2017 with a simple yet ambitious vision: to completely redefine the standard of European baking. Over the years, we have evolved from a humble local bakery into a premier destination for those who seek uncompromising quality and exquisite taste.
                   </p>
                   <p className="mt-6 text-[17px] leading-[1.8] text-gray-600 font-light tracking-wide">
-                    We believe that a cake is far more than just a dessert—it is the stunning centerpiece of your most cherished celebrations. That is exactly why every single creation that leaves our transparent live kitchens is meticulously handcrafted by master chefs using only the world's finest ingredients. 
+                    We believe that a cake is far more than just a dessert—it is the stunning centerpiece of your most cherished celebrations. That is exactly why every single creation that leaves our transparent live kitchens is meticulously handcrafted by master chefs using only the world&apos;s finest ingredients. 
                   </p>
                   <p className="mt-6 text-lg leading-relaxed font-serif font-bold text-brand italic border-l-4 border-brand/30 pl-5">
-                    "Unwavering hygiene, flawless aesthetics, and an absolutely unforgettable taste—this is the OYA promise."
+                    &quot;Unwavering hygiene, flawless aesthetics, and an absolutely unforgettable taste—this is the OYA promise.&quot;
                   </p>
                 </div>
               </motion.div>
@@ -254,7 +254,7 @@ export default function AboutPage() {
         {/* 6. Craftsmanship Callout */}
         <section className="py-32 bg-[#FFFBF5] relative overflow-hidden flex items-center justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[400px] text-gray-100 font-serif font-black leading-none pointer-events-none select-none z-0">
-            "
+            &quot;
           </div>
           <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
             <motion.div
@@ -265,7 +265,7 @@ export default function AboutPage() {
             >
               <h2 className="text-sm font-bold text-brand uppercase tracking-[0.3em] mb-8">Our Craftsmanship</h2>
               <p className="text-3xl md:text-5xl text-[#1a1a24] leading-[1.4] font-serif italic">
-                "Every curve, texture, and delicate detail is carefully sculpted to perfection—beautifully marrying modern aesthetics with timeless, classic baking techniques."
+                &quot;Every curve, texture, and delicate detail is carefully sculpted to perfection—beautifully marrying modern aesthetics with timeless, classic baking techniques.&quot;
               </p>
             </motion.div>
           </div>

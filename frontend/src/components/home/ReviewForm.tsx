@@ -62,7 +62,7 @@ export function ReviewForm() {
           Share Your Experience
         </h3>
         <p className="text-foreground/60 text-center text-sm mb-8">
-          We'd love to hear about your experience with our cakes
+          We&apos;d love to hear about your experience with our cakes
         </p>
 
         <AnimatePresence mode="wait">
