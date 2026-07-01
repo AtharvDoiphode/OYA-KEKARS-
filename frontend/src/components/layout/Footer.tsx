@@ -52,7 +52,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-3">
               <h4 className="font-bold text-foreground text-sm mb-1">Support</h4>
-              <Link href="/review" className="text-xs hover:text-brand transition-colors">Leave a review</Link>
+              <Link href="/#review-form" className="text-xs hover:text-brand transition-colors">Leave a review</Link>
               <Link href="/terms" className="text-xs hover:text-brand transition-colors">Terms & Conditions</Link>
               <Link href="/privacy" className="text-xs hover:text-brand transition-colors">Privacy</Link>
               <Link href="/admin" className="text-xs text-foreground/40 hover:text-brand transition-colors mt-4">Admin Login</Link>
